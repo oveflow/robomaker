@@ -1,6 +1,0 @@
-MAP : V_RHT_Suburb_02
-scenario_file_name : k_2.json
-start_time : 51314166
-end_time : 513141655
-total_run_time : 49.4300818443
-result : Vehicle_is_stop_10_sec

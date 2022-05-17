@@ -1,6 +1,0 @@
-MAP : R-KR-PG-KATRI
-scenario_file_name : scenario_1
-start_time : 513131513
-end_time : 513131548
-total_run_time : 35.5437161922
-result : Success
