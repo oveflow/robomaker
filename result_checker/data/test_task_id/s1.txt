@@ -1,0 +1,6 @@
+MAP : R_KR_PG_KATRI
+scenario_file_name : s1
+start_time : 51794537
+end_time : 51794618
+total_run_time : 41.3562171459
+result : Vehicle_is_stop_10_sec

@@ -1,0 +1,6 @@
+MAP : R_KR_PR_SeongnamCityHall
+scenario_file_name : s3
+start_time : 51794959
+end_time : 5179509
+total_run_time : 10.1643099785
+result : Vehicle_is_stop_10_sec

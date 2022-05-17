@@ -1,0 +1,6 @@
+MAP : R_KR_PR_Sangam_NoBuildings
+scenario_file_name : s2
+start_time : 51794823
+end_time : 51794856
+total_run_time : 32.9276509285
+result : Success
