@@ -109,6 +109,8 @@ class ResultChecker:
         start_time = self.getCurrTimeStr()
         self.start_time_secs = time.time()
 
+        print(self.map_name,self.scenario_file,start_time)
+
         self.write_data = WriteData('result_checker', self.result_record_file_name , self.result_save_dir)
 
         self.write_data.write_txt("MAP : " + self.map_name + "\n")
@@ -145,6 +147,7 @@ class ResultChecker:
             
 
     def check_ego_drive(self):
+
         if self.is_collision():
             self.save_result_data("Fail (Collision)")
             exit(1) # Fail
@@ -170,19 +173,15 @@ class ResultChecker:
         self.write_data.close_bag()
         
         # upload_to_aws(self.scenario_file_path, 'cloud-scenario-data', self.result_save_dir + '/' + self.scenario_file + '.json')
-        upload_to_aws(self.write_data.txt_path, 'morai-sim-resource', self.result_save_dir + '/' + self.result_record_file_name +'.txt')
-        upload_to_aws(self.write_data.bag_path, 'morai-sim-resource', self.result_save_dir + '/' + self.result_record_file_name +'.bag')        
+        upload_to_aws(self.write_data.txt_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'.txt')
+        upload_to_aws(self.write_data.bag_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'.bag')        
         if is_success == "Fail (Collision)" or is_success == "Fail (No Driving)": 
             self.is_saving = True 
             self.write_data.write_video(self.vehicle_img_array,self.top_img_array)          
-            upload_to_aws(self.write_data.video_vehicle_path, 'morai-sim-resource', self.result_save_dir + '/' + self.result_record_file_name +'_vehicle_view.mp4')
-            upload_to_aws(self.write_data.video_top_path, 'morai-sim-resource', self.result_save_dir + '/' + self.result_record_file_name +'_top_view.mp4')
+            upload_to_aws(self.write_data.video_vehicle_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'_vehicle_view.mp4')
+            upload_to_aws(self.write_data.video_top_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'_top_view.mp4')
         
-        while True:
-            if self.is_done :
-                break
-            else:
-                self.result_pub.publish('done')
+        
 
 
     def is_collision(self):

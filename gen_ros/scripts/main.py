@@ -29,8 +29,6 @@ class api :
         
         map_list=['R_KR_PG_KATRI','R_KR_PR_Sangam_NoBuildings','R_KR_PR_SeongnamCityHall','V_RHT_HighwayJunction_2','V_RHT_Suburb_02']
         scenario_list=['s1','s2','s3','s4','s5']
-        print(type(scenario_list))
-        print(map_list)
 
         api = launcher_start()
         api.launcher_start(map_list,scenario_list)   
