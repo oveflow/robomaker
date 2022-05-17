@@ -1,0 +1,12 @@
+receive_user_ip : 192.168.56.102
+receive_user_port : 10329
+request_dst_ip : 192.168.56.1
+request_dst_port : 10509
+user_id : aws_prototyping
+user_pw : aws_1234
+version : v.R1.220329.1
+map : R_KR_PG_K-City
+vehicle : 2017_Kia_Niro(HEV)
+network_file : 
+Sensor_file :  
+Scenario_file : 

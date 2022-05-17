@@ -1,0 +1,6 @@
+<launch>
+        <!-- args = "(추종할 경로 이름) (신호등 greenlight setting (True,False))" -->
+        <arg name="path" default=""/>
+	<node pkg="gen_ros" type="gen_planner.py" name="planner" args="$(arg path)" output="screen" />
+
+</launch>
