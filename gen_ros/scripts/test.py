@@ -39,7 +39,7 @@ sub_path = os.listdir("/home/morai/Release/MoraiLauncher_Lin/MoraiLauncher_Lin_D
 
 for sub in sub_path:
     for i in range(len(os.listdir(path+'/'+sub))):
-        scenario_list.append(os.listdir(path+'/'+sub)[i])
+        scenario_list.append(os.listdir(path+'/'+sub)[i].replace('.json',''))
         map_list.append(sub)
 
 print(scenario_list)
