@@ -196,7 +196,7 @@ class ResultChecker:
     def is_goalin(self):
         self.destination_list = [[-10.101255,1057.39209], #KATRI
                                 [8.14135742188,11.7146606445],#Sangam
-                                [-69.0599441528,63.0104370117],#seongnam
+                                [-1036.8972168,4906.19287109],#brt0                                
                                 [217.620117188,386.432128906],#junction
                                 [479.415893555,439.630859375]]#suburb
         min_dis = float('inf')

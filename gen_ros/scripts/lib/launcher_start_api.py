@@ -56,6 +56,7 @@ class launcher_start(controller):
         for index, map in enumerate(map_list):        
             self.controller.commander(Command.MAP_VEHICLE_SELECT,map+'/'+vehicle)#시뮬레이션/옵션 변경 실행 명령
             print("MAP_SETTING_COMMAND_SEND")            
+            time.sleep(10)
             while True:
                 self.controller.update()
                 if self.controller.is_sim_playing():                       
