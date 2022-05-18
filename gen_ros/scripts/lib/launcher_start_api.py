@@ -68,7 +68,9 @@ class launcher_start(controller):
             scenario_id = scenario_list[index]
             self.start_node_direct("gen_ros","gen_planner.launch",map,task_id,scenario_id)
 
-                        
+        # terminated process         
+        # cancel-simulation-job
+        os.system('aws robomaker cancel-simulation-job --job $AWS_ROBOMAKER_SIMULATION_JOB_ARN')
                         
     def start_node_direct(self,pkg,node,map_name,task_id,scenario_id):
         package = pkg

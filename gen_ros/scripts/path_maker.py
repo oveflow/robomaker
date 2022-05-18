@@ -18,7 +18,7 @@ class test :
 
         arg = rospy.myargv(argv=sys.argv)
         self.path_folder_name='path'
-        self.make_path_name='katri'
+        self.make_path_name='R_KR_PR_SejongBRT0'
         
 
         rospy.Subscriber("/Ego_topic",EgoVehicleStatus, self.status_callback)

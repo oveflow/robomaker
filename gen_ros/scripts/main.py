@@ -27,8 +27,7 @@ class api :
                 scenario_list.append(os.listdir(path+'/'+sub)[i].replace('.json',''))
                 map_list.append(sub)
         
-        map_list=['R_KR_PG_KATRI','R_KR_PR_Sangam_NoBuildings','R_KR_PR_SeongnamCityHall','V_RHT_HighwayJunction_2','V_RHT_Suburb_02']        
-        print()
+        map_list=['R_KR_PG_KATRI','R_KR_PR_Sangam_NoBuildings','R_KR_PR_SejongBRT0','V_RHT_HighwayJunction_2','V_RHT_Suburb_02']        
 
         
         api = launcher_start()
