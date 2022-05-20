@@ -64,7 +64,7 @@ class launcher_start(controller):
 
                     break
             #running alogorithim            
-            task_id = os.environ['TASK_ID']            
+            task_id = os.environ['TASK_ID']              
             print(scenario_list,index)
             scenario_id = scenario_list[index]
             self.start_node_direct("gen_ros","gen_planner.launch",map,task_id,scenario_id)

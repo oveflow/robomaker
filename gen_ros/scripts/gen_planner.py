@@ -3,6 +3,7 @@
 import sys,os
 import rospy
 import rospkg
+import time
 import numpy as np
 from nav_msgs.msg import Path,Odometry
 from std_msgs.msg import Float64,Int16,Float32MultiArray
@@ -67,8 +68,8 @@ class gen_planner():
         while not rospy.is_shutdown():
             if self.is_status==True and self.is_obj ==True:
                 
-                ## global_path와 차량의 status_msg를 이용해 현제 waypoint와 local_path를 생성
-                local_path,self.current_waypoint=findLocalPath(self.global_path,self.status_msg)
+                ## global_path와 차량의 status_msg를 이용해 현제 waypoint와 local_path를 생성                
+                local_path,self.current_waypoint=findLocalPath(self.global_path,self.status_msg)               
                 self.vo.get_object(self.object_num,self.object_info[0],self.object_info[1],self.object_info[2],self.object_info[3])
                 global_obj,local_obj=self.vo.calc_vaild_obj([self.status_msg.position.x,self.status_msg.position.y,(self.status_msg.heading)/180*pi])
                 if self.is_traffic == True: ## 신호등 상태 점검 
@@ -110,6 +111,14 @@ class gen_planner():
                     ctrl_msg.accel= 0
                     ctrl_msg.brake= -control_input
 
+                
+                if self.current_waypoint > 490 and self.path_name == "V_RHT_Suburb_02":
+                    ctrl_msg.steering = 0
+                    ctrl_msg.accel= 1
+                    ctrl_msg.brake= 0
+                    ctrl_pub.publish(ctrl_msg) ## Vehicl Control 출력
+                    time.sleep(15)
+                    break
 
                 local_path_pub.publish(local_path) ## Local Path 출력
                 ctrl_pub.publish(ctrl_msg) ## Vehicl Control 출력

@@ -74,16 +74,13 @@ class WriteData:
         for i in range(len(vehicle_view_data)):
             self.video_vehicle_view.write(vehicle_view_data[i])
         self.video_vehicle_view.release()        
-        
 
         for i in range(len(top_view_data)):
             self.video_top_view.write(top_view_data[i])
         self.video_top_view.release()
-
-
+        
         os.system(self.change_code_h264_cmd_vehicle)
         os.system(self.change_code_h264_cmd_top)
-
 
 class ResultChecker:
     def __init__(self):
@@ -158,7 +155,7 @@ class ResultChecker:
             exit(0) # Success
         
         if self.is_stop():            
-            self.save_result_data("Vehicle_is_stop_10_sec")            
+            self.save_result_data("Vehicle_is_stop_5 _sec")            
             exit(1)
     
 
@@ -178,9 +175,10 @@ class ResultChecker:
         # upload_to_aws(self.scenario_file_path, 'cloud-scenario-data', self.result_save_dir + '/' + self.scenario_file + '.json')
         upload_to_aws(self.write_data.txt_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'.txt')
         upload_to_aws(self.write_data.bag_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'.bag')        
-        if is_success == "Fail (Collision)" or is_success == "Fail (No Driving)": 
+        if is_success == "Fail (Collision)" or is_success == "Fail (No Driving)" or is_success == "Vehicle_is_stop_10_sec": 
             self.is_saving = True 
-            self.write_data.write_video(self.vehicle_img_array,self.top_img_array)          
+            self.write_data.write_video(self.vehicle_img_array,self.top_img_array)     
+
             upload_to_aws(self.write_data.video_vehicle_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'_vehicle_view.mp4')
             upload_to_aws(self.write_data.video_top_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'_top_view.mp4')
         
@@ -220,7 +218,7 @@ class ResultChecker:
                 self.is_stop_start = True
                 self.is_stop_time = time.time()
             else:
-                if(time.time() - self.is_stop_time > 10):
+                if(time.time() - self.is_stop_time > 5):
                     return True
         else:
             self.is_stop_start = False
