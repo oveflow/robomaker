@@ -155,7 +155,7 @@ class ResultChecker:
             exit(0) # Success
         
         if self.is_stop():            
-            self.save_result_data("Vehicle_is_stop_5 _sec")            
+            self.save_result_data("Vehicle_is_stop_5_sec")            
             exit(1)
     
 
@@ -175,7 +175,7 @@ class ResultChecker:
         # upload_to_aws(self.scenario_file_path, 'cloud-scenario-data', self.result_save_dir + '/' + self.scenario_file + '.json')
         upload_to_aws(self.write_data.txt_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'.txt')
         upload_to_aws(self.write_data.bag_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'.bag')        
-        if is_success == "Fail (Collision)" or is_success == "Fail (No Driving)" or is_success == "Vehicle_is_stop_10_sec": 
+        if is_success == "Fail (Collision)" or is_success == "Fail (No Driving)" or is_success == "Vehicle_is_stop_5_sec": 
             self.is_saving = True 
             self.write_data.write_video(self.vehicle_img_array,self.top_img_array)     
 
