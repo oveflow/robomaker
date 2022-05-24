@@ -31,6 +31,12 @@ class WriteData:
         self.txt_path=self.dir_path + '/' + scenario_file +'.txt'
         self.txt_f=open(self.txt_path, 'w')
 
+        self.vehicle_path=self.dir_path + '/' + scenario_file +'_vehicle.mp4'
+        self.vehicle_f=open(self.vehicle_path, 'w')
+
+        self.top_path=self.dir_path + '/' + scenario_file +'_top.mp4'
+        self.top_f=open(self.top_path, 'w')
+
         self.bag_path = self.dir_path + '/' + scenario_file +'.bag'
         self.bag = rosbag.Bag(self.bag_path,'w')
         
@@ -57,7 +63,11 @@ class WriteData:
         except OSError:
             print ('Error: Creating directory. ' +  self.dir_path)
 
-
+    def temp_video_data(self,data):
+        self.vehicle_f.write(data)
+        self.top_f.write(data)
+    
+    
     def write_txt(self , data):
         self.txt_f.write(data)
 
@@ -180,7 +190,13 @@ class ResultChecker:
         if is_success == "Fail (Collision)" or is_success == "Fail (No Driving)" or is_success == "Vehicle_is_stop_5_sec": 
             print("save_mp4_data")
             self.is_saving = True 
-            self.write_data.write_video(self.vehicle_img_array,self.top_img_array)     
+            # self.write_data.write_video(self.vehicle_img_array,self.top_img_array)     
+
+            
+            #for demo temp mp4 data
+            self.write_data.temp_video_data(is_success)
+            
+            
 
             upload_to_aws(self.write_data.video_vehicle_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'_vehicle_view.mp4')
             upload_to_aws(self.write_data.video_top_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'_top_view.mp4')
