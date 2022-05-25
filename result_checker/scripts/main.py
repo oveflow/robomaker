@@ -157,7 +157,7 @@ class ResultChecker:
 
         if self.is_collision():
             self.save_result_data("Fail (Collision)")
-            exit(1) # Fail
+            exit(0) # Fail
 
         if self.is_goalin():
             self.save_result_data("Success")
@@ -166,7 +166,7 @@ class ResultChecker:
         
         if self.is_stop():            
             self.save_result_data("Vehicle_is_stop_5_sec") 
-            exit(1)
+            exit(0)
     
 
     def save_result_data(self, is_success):
