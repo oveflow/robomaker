@@ -73,10 +73,11 @@ class launcher_start(controller):
         
         #tagging-simulation-job
         os.system('aws robomaker tag-resource --resource-arn $AWS_ROBOMAKER_SIMULATION_JOB_ARN --tags status=Completed')      
-
+        print("tagging")
         # cancel-simulation-job
         os.system('aws robomaker cancel-simulation-job --job $AWS_ROBOMAKER_SIMULATION_JOB_ARN')
-                        
+        print("cancel simulation-job")                        
+        
     def start_node_direct(self,pkg,node,map_name,task_id,scenario_id):
         package = pkg
         node_name = node

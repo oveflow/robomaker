@@ -150,7 +150,19 @@ class ResultChecker:
 
         while not rospy.is_shutdown():
             self.result_pub.publish('result_play')
-            self.check_ego_drive()
+            # self.check_ego_drive()
+            if self.is_collision():
+                self.save_result_data("Fail (Collision)")
+                break
+
+            if self.is_goalin():
+                self.save_result_data("Success")
+                print("Success")
+                break
+            
+            if self.is_stop():            
+                self.save_result_data("Vehicle_is_stop_5_sec") 
+                break
             
 
     def check_ego_drive(self):
