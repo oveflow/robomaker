@@ -179,8 +179,7 @@ class ResultChecker:
         self.write_data.close_txt()
         self.write_data.close_bag()
         
-        #tagging-simulation-job
-        os.system('aws robomaker tag-resource --resource-arn $AWS_ROBOMAKER_SIMULATION_JOB_ARN --tags status='+is_success)
+        
 
         # upload_to_aws(self.scenario_file_path, 'cloud-scenario-data', self.result_save_dir + '/' + self.scenario_file + '.json')
         upload_to_aws(self.write_data.txt_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'.txt')

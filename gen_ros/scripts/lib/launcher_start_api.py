@@ -69,7 +69,11 @@ class launcher_start(controller):
             scenario_id = scenario_list[index]
             self.start_node_direct("gen_ros","gen_planner.launch",map,task_id,scenario_id)
 
-        # terminated process         
+        # terminated process   
+        
+        #tagging-simulation-job
+        os.system('aws robomaker tag-resource --resource-arn $AWS_ROBOMAKER_SIMULATION_JOB_ARN --tags status=Completed')      
+
         # cancel-simulation-job
         os.system('aws robomaker cancel-simulation-job --job $AWS_ROBOMAKER_SIMULATION_JOB_ARN')
                         
@@ -90,7 +94,9 @@ class launcher_start(controller):
 
         algorithm_p.wait()
 
-        result_process.terminate()
+        result_process.wait()
+
+        # result_process.terminate()
 
 
 
