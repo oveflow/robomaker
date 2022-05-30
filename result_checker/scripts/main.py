@@ -201,14 +201,9 @@ class ResultChecker:
         if is_success == "Fail (Collision)" or is_success == "Fail (No Driving)" or is_success == "Vehicle_is_stop_5_sec": 
             print("save_mp4_data")
             self.is_saving = True 
-            # self.write_data.write_video(self.vehicle_img_array,self.top_img_array)     
-
-            
+            self.write_data.write_video(self.vehicle_img_array,self.top_img_array)     
             #for demo temp mp4 data
-            self.write_data.temp_video_data(is_success)
-            
-            
-
+            # self.write_data.temp_video_data(is_success)
             upload_to_aws(self.write_data.video_vehicle_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'_vehicle_view.mp4')
             upload_to_aws(self.write_data.video_top_path, 'morai-sim-output', self.result_save_dir + '/' + self.result_record_file_name +'_top_view.mp4')
         
